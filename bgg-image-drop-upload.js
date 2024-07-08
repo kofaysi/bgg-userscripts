@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         BGG Image Drop to Upload
-// @namespace    http://tampermonkey.net/
+// @namespace    https://github.com/kofaysi/bgg-scripts/blob/main/bgg-image-drop-upload.js
 // @version      2024-07-08
 // @description  Opens the editor upload tab, selects the upload image tab, fills the upload path, checks the subscribe checkbox, selects medium image size, and writes filename into textarea on image drop for BoardGameGeek
 // @match        https://boardgamegeek.com/*
