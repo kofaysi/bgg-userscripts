@@ -1,31 +1,44 @@
-# The Ultimate Image Upload Assistant (UIUA)
+# BGG Scripts
 
 ## Introduction
-Welcome to the repository for **The Ultimate Image Upload Assistant (UIUA)** userscript. This script is designed to streamline the image upload process on BoardGameGeek (BGG), saving users time and effort by automating repetitive steps.
+Welcome to the **BGG Scripts** repository. This repository contains userscripts designed to enhance the user experience on BoardGameGeek (BGG). Currently, it includes:
 
-## Features
-- **Automatically Opens the Upload Tab**: No more hunting for the right icon.
-- **Selects the Correct Upload Tab**: Directly takes you to the image upload section.
-- **Fills the Upload Path**: Just drag and drop your image.
-- **Writes the Filename into the Textarea**: Automatically inputs the filename for you. If the filename is not suitable, double-click into the text area and start typing your own comment.
-- **Checks the Subscribe Checkbox**: Stay updated with your image posts without an extra click.
-- **Selects the Medium Image Size**: Ensures your images are the perfect size (preferred size).
+1. **The Ultimate Image Upload Assistant (UIUA)**
+2. **BGG Video Resizer**
 
-## Installation
+## Scripts
+
+### The Ultimate Image Upload Assistant (UIUA)
+This userscript automates several steps in the image upload process, saving you time and effort. Here’s what it does:
+
+1. **Automatically Opens the Upload Tab**: No more hunting for the right icon.
+2. **Selects the Correct Upload Tab**: Directly takes you to the image upload section.
+3. **Fills the Upload Path**: Just drag and drop your image.
+4. **Writes the Filename into the Textarea**: Automatically inputs the filename for you. If the filename is not suitable, double-click into the text area and start typing your own comment.
+5. **Checks the Subscribe Checkbox**: Stay updated with your image posts without an extra click.
+6. **Selects the Medium Image Size**: Ensures your images are the perfect size (preferred size).
+
+### BGG Video Resizer
+This userscript resizes BGG videos to not be the full width of the column and maintains proper aspect ratio and alignment. Here’s what it does:
+
+1. **Resize YouTube Video Elements**: Adjusts the width and height of YouTube videos.
+2. **Adjust Parent Containers**: Ensures no overflow and proper alignment of video containers.
+
+## How to Install
 
 ### Prerequisites
 - **Tampermonkey** (or any other userscript manager) installed in your browser.
 
-### Steps
+### Installation Steps
 1. **Install Tampermonkey**: Install Tampermonkey from [here](https://www.tampermonkey.net/).
-2. **Open the Script**: Open the script using one of the following links:
-   - [View the script on Gist](https://gist.github.com/kofaysi/a22e9390d356a934a2f30eaa7941ee44)
-   - [View the script on GitHub](https://github.com/kofaysi/bgg-scripts/blob/main/bgg-image-drop-upload.js)
-3. **Trigger Tampermonkey to Load the Script**: Opening the gist link and selecting raw should trigger Tampermonkey to recognize the script and load it.
-4. **Create a New Userscript (if needed)**: If the script doesn't load automatically, create a new userscript in Tampermonkey and paste the script from the link.
-5. **Save and Enable the Script**.
-6. **Test the Script**: Navigate to a BoardGameGeek thread, type a reply, and try dropping an image onto the page. The script should automatically perform all required actions in sequence with appropriate delays (each 200ms).
-7. **Confirm Upload**: Click the **Upload & Embed Image** button and the image tag will be placed at the cursor.
+2. **Load the Script**:
+   - Open the script you want to install in the repository.
+   - Click on the "Raw" button to trigger Tampermonkey to recognize the script and load it.
+3. **Create a New Userscript (if needed)**: If the script doesn't load automatically, create a new userscript in Tampermonkey and paste the script.
+4. **Save and Enable the Script**.
+5. **Test the Script**:
+   - For **UIUA**: Navigate to a BoardGameGeek thread, type a reply, and try dropping an image onto the page. The script should automatically perform all required actions in sequence with appropriate delays (each 200ms). Confirm the upload by clicking the **Upload & Embed Image** button and the image tag will be placed at the cursor.
+   - For **BGG Video Resizer**: Navigate to a BoardGameGeek page with embedded YouTube videos. The videos should resize and align properly.
 
 ## Tested On
 - **Firefox** 127.0.2 (64-bit)
@@ -35,3 +48,14 @@ Your feedback and suggestions are welcome! Feel free to share any improvements o
 
 ## License
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+## Contributing
+1. Fork the repository.
+2. Create a new branch (`git checkout -b feature-branch`).
+3. Make your changes.
+4. Commit your changes (`git commit -am 'Add new feature'`).
+5. Push to the branch (`git push origin feature-branch`).
+6. Create a new Pull Request.
+
+## Contact
+For any questions, feel free to contact the repository owner.
