@@ -24,6 +24,15 @@ This userscript resizes BGG videos to not be the full width of the column and ma
 1. **Resize YouTube Video Elements**: Adjusts the width and height of YouTube videos.
 2. **Adjust Parent Containers**: Ensures no overflow and proper alignment of video containers.
 
+### BGG BBCode Formatter and Link Inserter
+
+This userscript enhances your text editing experience on BoardGameGeek by adding keyboard shortcuts for BBCode formatting and automating the link and image insertion process. Here’s what it does:
+
+1. BBCode Formatting Shortcuts: Quickly format your text with keyboard shortcuts for bold, italic, underline, strikethrough, typewriter, headings, quotes, and hidden text.
+2. One-Click Embedding: Streamlines the embedding process by automatically clicking through the necessary steps, saving you time and effort.
+   1. Automated Link Insertion: Automatically detects URLs pasted into the text field, opens the appropriate dialog, and completes the link insertion process for you.
+   2. Smart Image Handling: If a BoardGameGeek image URL is detected, it opens the image dialog, extracts the image ID, sets the preferred image size, and embeds the image without manual input.
+
 ## How to Install
 
 ### Prerequisites
