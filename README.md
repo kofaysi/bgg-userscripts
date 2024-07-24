@@ -3,12 +3,14 @@
 ## Introduction
 Welcome to the **BGG Scripts** repository. This repository contains userscripts designed to enhance the user experience on BoardGameGeek (BGG). Currently, it includes:
 
-1. **The Ultimate Image Upload Assistant (UIUA)**
-2. **BGG Video Resizer**
+1. [The Ultimate Image Upload Assistant](#the-ultimate-image-upload-assistant)
+2. [Video Resizer](#video-resizer)
+3. [BBCode Formatter and Link Inserter](#bbcode-formatter-and-link-inserter)
+4. [Add Edit Tags Link](#add-edit-tags-link)
 
 ## Scripts
 
-### The Ultimate Image Upload Assistant (UIUA)
+### The Ultimate Image Upload Assistant
 This userscript automates several steps in the image upload process, saving you time and effort. Here’s what it does:
 
 1. **Automatically Opens the Upload Tab**: No more hunting for the right icon.
@@ -18,13 +20,13 @@ This userscript automates several steps in the image upload process, saving you 
 5. **Checks the Subscribe Checkbox**: Stay updated with your image posts without an extra click.
 6. **Selects the Medium Image Size**: Ensures your images are the perfect size (preferred size).
 
-### BGG Video Resizer
+### Video Resizer
 This userscript resizes BGG videos to not be the full width of the column and maintains proper aspect ratio and alignment. Here’s what it does:
 
 1. **Resize YouTube Video Elements**: Adjusts the width and height of YouTube videos.
 2. **Adjust Parent Containers**: Ensures no overflow and proper alignment of video containers.
 
-### BGG BBCode Formatter and Link Inserter
+### BBCode Formatter and Link Inserter
 
 This userscript enhances your text editing experience on BoardGameGeek by adding keyboard shortcuts for BBCode formatting and automating the link and image insertion process. Here’s what it does:
 
