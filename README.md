@@ -32,6 +32,10 @@ This userscript enhances your text editing experience on BoardGameGeek by adding
 2. One-Click Embedding: Streamlines the embedding process by automatically clicking through the necessary steps, saving you time and effort.
    1. Automated Link Insertion: Automatically detects URLs pasted into the text field, opens the appropriate dialog, and completes the link insertion process for you.
    2. Smart Image Handling: If a BoardGameGeek image URL is detected, it opens the image dialog, extracts the image ID, sets the preferred image size, and embeds the image without manual input.
+  
+### Add Edit Tags Link
+  
+This userscript enhances the user experience on the BoardGameGeek website by automatically adding an "Edit Tags" link to each board game entry listed on pages under https://boardgamegeek.com/tag/*. The "Edit Tags" link is seamlessly integrated into the existing layout, aligning to the right within the row of the board game name. This allows users to quickly access the tag editing page for any board game without disrupting the visual style of the site. The script runs automatically upon page load, requiring no additional interaction from the user.
 
 ## How to Install
 
