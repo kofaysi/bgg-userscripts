@@ -11,24 +11,27 @@
 (function() {
     'use strict';
 
-    // Function to align dropdown items horizontally and adjust positioning to prevent overflow
-    function adjustDropdownPosition(dropdown) {
+    // Function to position the dropdown below the ellipsis button and align items horizontally
+    function positionDropdownBelowEllipsis(dropdown) {
         const dropdownMenu = dropdown.querySelector('.dropdown-menu');
         dropdownMenu.style.display = 'flex';
         dropdownMenu.style.flexDirection = 'row';
         dropdownMenu.style.flexWrap = 'wrap'; // Handles overflow
         dropdownMenu.style.gap = '10px'; // Adds spacing between buttons
 
-        // Adjust dropdown positioning to prevent overflow
+        // Position the dropdown below the ellipsis button
         dropdownMenu.style.position = 'absolute';
-        dropdownMenu.style.top = 'auto';
-        dropdownMenu.style.bottom = '100%'; // Position the menu to open upwards
+        dropdownMenu.style.top = '100%'; // Position the menu to open below the ellipsis button
         dropdownMenu.style.right = '0'; // Align the dropdown to the right edge of its container
         dropdownMenu.style.left = 'auto'; // Ensure it doesn't overflow on the left
         dropdownMenu.style.zIndex = '9999'; // Ensure it appears above other elements
         dropdownMenu.style.backgroundColor = '#000'; // Maintain background color to match site theme
         dropdownMenu.style.padding = '5px'; // Add some padding to the dropdown
         dropdownMenu.style.borderRadius = '4px'; // Slight rounding to the edges
+
+        // Ensure the ellipsis button doesn't toggle the dropdown
+        const ellipsisButton = dropdown.querySelector('button.dropdown-toggle');
+        ellipsisButton.style.pointerEvents = 'none'; // Disable pointer events on the ellipsis button
     }
 
     // Function to hide the Report button and align dropdown items
@@ -39,7 +42,7 @@
                                Array.from(dropdown.querySelectorAll('button.dropdown-item')).find(button => button.textContent.includes('Edit'));
 
             if (editButton) {
-                adjustDropdownPosition(dropdown);
+                positionDropdownBelowEllipsis(dropdown);
                 
                 const reportButton = dropdown.querySelector('gg-button-report-text');
                 if (reportButton) {
