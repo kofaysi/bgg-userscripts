@@ -8,7 +8,7 @@
 // @grant        none
 // ==/UserScript==
 
-function() {
+(function() {
     'use strict';
 
     // Function to align dropdown items horizontally
