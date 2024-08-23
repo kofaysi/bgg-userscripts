@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Modify Comment Menu Structure for own Comments
-// @namespace    https://github.com/kofaysi/bgg-scripts/blob/main/bgg_modify_comment_menu_structure.user.js
+// @namespace    https://github.com/kofaysi/
 // @version      2024-08-15
 // @description  Unhide dropdown elements, align them in a single row, and hide the Report button if Edit is available
 // @author       https://github.com/kofaysi/
