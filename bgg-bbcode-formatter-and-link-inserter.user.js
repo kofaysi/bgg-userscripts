@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         BGG BBCode Formatter and Link Inserter
-// @namespace    https://github.com/kofaysi/bgg-scripts
+// @namespace    https://github.com/kofaysi/
 // @version      2024-07-18
 // @description  Adds keyboard shortcuts for BBCode formatting in text fields, and automatically handles link pasting by opening the appropriate dialog for links or images on BGG.
 // @match        https://boardgamegeek.com/*
