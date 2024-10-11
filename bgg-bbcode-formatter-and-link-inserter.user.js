@@ -1,21 +1,52 @@
 // ==UserScript==
-// @name         BGG BBCode Formatter and Link Inserter
+// @name         BGG BBCode Formatter, Link Inserter, and Image Upload on Drop
 // @namespace    https://github.com/kofaysi/
-// @version      2024-07-18
-// @description  Adds keyboard shortcuts for BBCode formatting in text fields, and automatically handles link pasting by opening the appropriate dialog for links or images on BGG.
+// @version      3.2
+// @description  Adds keyboard shortcuts for BBCode formatting, handles link and image pasting, updates aria-labels with shortcuts, and automates image upload on drop in BoardGameGeek.
 // @match        https://boardgamegeek.com/*
-// @author       https://github.com/kofaysi/
 // @grant        none
 // ==/UserScript==
 
 (function() {
     'use strict';
 
+    // Centralized labels with shortcut descriptions
+    const labels = {
+        bold: 'Bold (Ctrl+B)',
+        italic: 'Italic (Ctrl+I)',
+        underline: 'Underline (Ctrl+U)',
+        strikethrough: 'Strikethrough (Ctrl+Shift+S)',
+        monospace: 'Monospace (Ctrl+Shift+T)',
+        heading: 'Heading (Ctrl+Shift+H)',
+        quote: 'Quote (Ctrl+Shift+Q)',
+        spoiler: 'Spoiler (Ctrl+Shift+O)',
+        addLink: 'Add Link (Ctrl+Shift+K)',
+        insertImage: 'Image (Ctrl+Shift+I)'
+    };
+
+    function updateAriaLabels() {
+        for (let label of Object.values(labels)) {
+            const labelText = label.split(" (")[0];
+            const button = document.querySelector(`button[aria-label^="${labelText}"]`);
+            if (button) {
+                button.setAttribute('aria-label', label); // Set the full label with shortcut
+            }
+        }
+    }
+
+    updateAriaLabels(); // Call function to update aria-labels initially
+
+    // Observe DOM changes to ensure aria-labels are updated even if buttons are dynamically created
+    const observer = new MutationObserver(() => {
+        updateAriaLabels();
+    });
+
+    observer.observe(document.body, { childList: true, subtree: true });
+
     function toggleSelection(textarea, before, after) {
         let start = textarea.selectionStart;
         let end = textarea.selectionEnd;
         let text = textarea.value;
-
         let selectedText = text.substring(start, end);
         let beforeText = text.substring(start - before.length, start);
         let afterText = text.substring(end, end + after.length);
@@ -31,41 +62,27 @@
         }
     }
 
-    function isValidUrl(string) {
-        try {
-            new URL(string);
-            return true;
-        } catch (_) {
-            return false;
-        }
-    }
-
-    function extractImageId(url) {
-        const regex = /https:\/\/boardgamegeek\.com\/image\/(\d+)/;
-        const match = url.match(regex);
-        return match ? match[1] : null;
-    }
-
     function openLinkDialog() {
-        let linkButton = document.querySelector('button[aria-label="Add Link"]');
+        let linkButton = document.querySelector(`button[aria-label="${labels.addLink}"]`);
         if (linkButton) {
             linkButton.click();
         }
     }
 
     function openImageDialog() {
-        let embedMediaButton = document.querySelector('button[aria-label="Embed Media"]');
-        if (embedMediaButton) {
-            embedMediaButton.click();
+        let insertImageButton = document.querySelector(`button[aria-label="${labels.insertImage}"]`);
+        if (insertImageButton) {
+            insertImageButton.click();
             setTimeout(() => {
-                let imageButton = document.querySelector('button[aria-label="Image"]');
-                if (imageButton) {
-                    imageButton.click();
-                }
-            }, 100); // Adjust the timeout as necessary
+            //    let imageButton = document.querySelector(`button[aria-label="${labels.insertImage}"]`);
+            //    if (imageButton) {
+            //        imageButton.click();
+            //    }
+            }, 100);
         }
     }
 
+    // Shortcuts handler
     document.addEventListener('keydown', function(e) {
         if (e.ctrlKey || e.metaKey) {
             let textarea = document.activeElement;
@@ -77,7 +94,11 @@
                         break;
                     case 'i':
                         e.preventDefault();
-                        toggleSelection(textarea, '[i]', '[/i]');
+                        if (e.shiftKey) {
+                            openImageDialog(); // Trigger the image dialog with Ctrl+Shift+I
+                        } else {
+                            toggleSelection(textarea, '[i]', '[/i]'); // Trigger italic with Ctrl+I
+                        }
                         break;
                     case 'u':
                         e.preventDefault();
@@ -92,7 +113,7 @@
                     case 't':
                         if (e.shiftKey) {
                             e.preventDefault();
-                            toggleSelection(textarea, '[c]', '[/c]');
+                            toggleSelection(textarea, '[mono]', '[/mono]');
                         }
                         break;
                     case 'h':
@@ -110,7 +131,13 @@
                     case 'o':
                         if (e.shiftKey) {
                             e.preventDefault();
-                            toggleSelection(textarea, '[o]', '[/o]');
+                            toggleSelection(textarea, '[spoiler]', '[/spoiler]');
+                        }
+                        break;
+                    case 'k':
+                        if (e.shiftKey) {
+                            e.preventDefault();
+                            openLinkDialog(); // Trigger the link dialog
                         }
                         break;
                     default:
@@ -120,6 +147,7 @@
         }
     });
 
+    // Full paste event listener to handle URL pasting
     document.addEventListener('paste', function(e) {
         let textarea = document.activeElement;
         if (textarea && (textarea.tagName === 'TEXTAREA' || (textarea.tagName === 'INPUT' && textarea.type === 'text'))) {
@@ -128,30 +156,22 @@
                 e.preventDefault();
 
                 if (pastedText.includes("https://boardgamegeek.com/image/")) {
-                    // Open the image dialog
                     openImageDialog();
 
-                    // Set the pasted URL in the image input field and perform the necessary steps
                     setTimeout(() => {
                         let imageId = extractImageId(pastedText);
                         let imageInput = document.querySelector('input[formcontrolname="geekimageId"]');
                         if (imageInput && imageId) {
                             imageInput.value = imageId;
 
-                            // Simulate various events to trigger validation
                             ['input', 'change', 'blur'].forEach(eventType => {
-                                let event = new Event(eventType, {
-                                    bubbles: true,
-                                    cancelable: true,
-                                });
+                                let event = new Event(eventType, { bubbles: true, cancelable: true });
                                 imageInput.dispatchEvent(event);
                             });
 
-                            // Focus and blur to trigger any additional validation
                             imageInput.focus();
                             imageInput.blur();
 
-                            // Select "Medium" in the dropdown
                             let imageSizeDropdown = document.querySelector('select[name="geek-image-size"]');
                             if (imageSizeDropdown) {
                                 imageSizeDropdown.value = "medium";
@@ -159,40 +179,31 @@
                                 imageSizeDropdown.dispatchEvent(event);
                             }
 
-                            // Enable and click the "Embed Image" button
                             setTimeout(() => {
                                 let embedButton = document.querySelector('.gg-modal-footer button.btn-primary');
                                 if (embedButton) {
                                     embedButton.disabled = false;
                                     embedButton.click();
                                 }
-                            }, 100); // Adjust the timeout as necessary
+                            }, 100);
                         }
-                    }, 100); // Adjust the timeout as necessary for the image subwindow to appear
+                    }, 100);
                 } else {
-                    // Open the link dialog
                     openLinkDialog();
 
-                    // Set the pasted URL in the link input field
                     setTimeout(() => {
                         let linkInput = document.querySelector('input[name="url"]');
                         if (linkInput) {
                             linkInput.value = pastedText;
 
-                            // Simulate various events to trigger validation
                             ['input', 'change', 'blur'].forEach(eventType => {
-                                let event = new Event(eventType, {
-                                    bubbles: true,
-                                    cancelable: true,
-                                });
+                                let event = new Event(eventType, { bubbles: true, cancelable: true });
                                 linkInput.dispatchEvent(event);
                             });
 
-                            // Focus and blur to trigger any additional validation
                             linkInput.focus();
                             linkInput.blur();
 
-                            // Enable the submit button and click it
                             setTimeout(() => {
                                 let form = linkInput.closest('form');
                                 if (form) {
@@ -201,20 +212,99 @@
                                         submitButton.disabled = false;
                                         submitButton.click();
 
-                                        // Click the "Add Link" button in the modal window
                                         setTimeout(() => {
                                             let addLinkButton = document.querySelector('gg-link-inserter .gg-modal-footer button.btn-primary');
                                             if (addLinkButton) {
                                                 addLinkButton.click();
                                             }
-                                        }, 500); // Adjust the timeout as necessary
+                                        }, 500);
                                     }
                                 }
-                            }, 100); // Adjust the timeout as necessary
+                            }, 100);
                         }
-                    }, 100); // Adjust the timeout as necessary for the link subwindow to appear
+                    }, 100);
                 }
             }
         }
     });
+
+    // Helper function to check if a string is a valid URL
+    function isValidUrl(string) {
+        try {
+            new URL(string);
+            return true;
+        } catch (_) {
+            return false;
+        }
+    }
+
+    function extractImageId(url) {
+        const regex = /https:\/\/boardgamegeek\.com\/image\/(\d+)/;
+        const match = url.match(regex);
+        return match ? match[1] : null;
+    }
+
+    // Image upload on drop functionality
+    const TIMEOUT_DURATION = 200;
+
+    function handleDrop(event) {
+        event.preventDefault();
+        const files = event.dataTransfer.files;
+        if (files.length > 0) {
+            const file = files[0];
+
+            openImageDialog();
+            setTimeout(selectUploadImageTab, TIMEOUT_DURATION);
+            setTimeout(() => fillUploadPath(file), TIMEOUT_DURATION * 2);
+            setTimeout(() => writeFilenameIntoTextarea(file), TIMEOUT_DURATION * 3);
+            setTimeout(checkSubscribeCheckbox, TIMEOUT_DURATION * 4);
+            setTimeout(selectMediumOption, TIMEOUT_DURATION * 5);
+        }
+    }
+
+    function selectUploadImageTab() {
+        document.querySelector('li[ngbnavitem="upload"] a').click();
+    }
+
+    function fillUploadPath(file) {
+        const input = document.querySelector('input#upload-geek-image');
+        const dataTransfer = new DataTransfer();
+        dataTransfer.items.add(file);
+        input.files = dataTransfer.files;
+
+        const event = new Event('change', { bubbles: true });
+        input.dispatchEvent(event);
+    }
+
+    function writeFilenameIntoTextarea(file) {
+        const textarea = document.querySelector('textarea#link-text');
+        textarea.value = file.name;
+
+        const event = new Event('input', { bubbles: true });
+        textarea.dispatchEvent(event);
+    }
+
+    function checkSubscribeCheckbox() {
+        const checkbox = document.querySelector('input#upload-geek-image-subscribe');
+        if (!checkbox.checked) {
+            checkbox.click();
+        }
+    }
+
+    function selectMediumOption() {
+        const dropdowns = document.querySelectorAll('select#geek-image-size');
+        if (dropdowns.length > 1) {
+            const secondDropdown = dropdowns[1];
+            secondDropdown.value = 'medium';
+
+            const event = new Event('change', { bubbles: true });
+            secondDropdown.dispatchEvent(event);
+        }
+    }
+
+    document.addEventListener('drop', handleDrop);
+    document.addEventListener('dragover', function(event) {
+        event.preventDefault();
+    });
+
 })();
