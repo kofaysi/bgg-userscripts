@@ -3,22 +3,26 @@
 ## Introduction
 Welcome to the **BGG Scripts** repository. This repository contains userscripts designed to enhance the user experience on BoardGameGeek (BGG). Currently, it includes:
 
-1. [The Ultimate Image Upload Assistant](#the-ultimate-image-upload-assistant)
+1. [BBCode Shortcuts, Link Inserter and Image Upload Assistant](#bbcode-shortcuts-link-inserter-and-image-upload-assistant)
 2. [Video Resizer](#video-resizer)
-3. [BBCode Formatter and Link Inserter](#bbcode-formatter-and-link-inserter)
-4. [Add Edit Tags Link](#add-edit-tags-link)
+3. [Add Edit Tags Link](#add-edit-tags-link)
 
 ## Scripts
 
-### The Ultimate Image Upload Assistant
-This userscript automates several steps in the image upload process, saving you time and effort. Here’s what it does:
+### BBCode Shortcuts, Link Inserter and Image Upload Assistant
 
-1. **Automatically Opens the Upload Tab**: No more hunting for the right icon.
-2. **Selects the Correct Upload Tab**: Directly takes you to the image upload section.
-3. **Fills the Upload Path**: Just drag and drop your image.
-4. **Writes the Filename into the Textarea**: Automatically inputs the filename for you. If the filename is not suitable, double-click into the text area and start typing your own comment.
-5. **Checks the Subscribe Checkbox**: Stay updated with your image posts without an extra click.
-6. **Selects the Medium Image Size**: Ensures your images are the perfect size (preferred size).
+This single userscript enhances your text editing experience on BoardGameGeek by adding keyboard shortcuts for BBCode formatting, automating link and image insertion, and simplifying image uploads. Key features include:
+
+1. **BBCode Formatting Shortcuts**: Quickly format text with keyboard shortcuts for bold, italic, underline, strikethrough, typewriter, headings, quotes, and hidden text.
+2. **One-Click Embedding**:
+   - **Automated Link Insertion**: Detects URLs pasted into the text field, opens the link dialog, and completes the link insertion for you.
+   - **Smart Image Handling**: Detects BoardGameGeek image URLs, opens the image dialog, extracts the image ID, sets the preferred image size, and embeds the image seamlessly.
+3. **Image Upload Assistant**:
+   - **Automatic Upload Tab Selection**: Directly opens the image upload section.
+   - **Drag-and-Drop Upload**: Automatically fills the upload path; simply drop your image.
+   - **Filename Handling**: Inputs the filename into the text area automatically. Double-click the text area to edit as needed.
+   - **Subscribe Checkbox**: Automatically checks the subscribe box to keep you updated on image posts.
+   - **Preferred Image Size Selection**: Sets medium size for optimal display.
 
 ### Video Resizer
 This userscript resizes BGG videos to not be the full width of the column and maintains proper aspect ratio and alignment. Here’s what it does:
@@ -26,15 +30,6 @@ This userscript resizes BGG videos to not be the full width of the column and ma
 1. **Resize YouTube Video Elements**: Adjusts the width and height of YouTube videos.
 2. **Adjust Parent Containers**: Ensures no overflow and proper alignment of video containers.
 
-### BBCode Formatter and Link Inserter
-
-This userscript enhances your text editing experience on BoardGameGeek by adding keyboard shortcuts for BBCode formatting and automating the link and image insertion process. Here’s what it does:
-
-1. BBCode Formatting Shortcuts: Quickly format your text with keyboard shortcuts for bold, italic, underline, strikethrough, typewriter, headings, quotes, and hidden text.
-2. One-Click Embedding: Streamlines the embedding process by automatically clicking through the necessary steps, saving you time and effort.
-   1. Automated Link Insertion: Automatically detects URLs pasted into the text field, opens the appropriate dialog, and completes the link insertion process for you.
-   2. Smart Image Handling: If a BoardGameGeek image URL is detected, it opens the image dialog, extracts the image ID, sets the preferred image size, and embeds the image without manual input.
-  
 ### Add Edit Tags Link
   
 This userscript enhances the user experience on the BoardGameGeek website by automatically adding an "Edit Tags" link to each board game entry listed on pages under https://boardgamegeek.com/tag/*. The "Edit Tags" link is seamlessly integrated into the existing layout, aligning to the right within the row of the board game name. This allows users to quickly access the tag editing page for any board game without disrupting the visual style of the site. The script runs automatically upon page load, requiring no additional interaction from the user.
@@ -56,7 +51,7 @@ This userscript enhances the user experience on the BoardGameGeek website by aut
    - For **BGG Video Resizer**: Navigate to a BoardGameGeek page with embedded YouTube videos. The videos should resize and align properly.
 
 ## Tested On
-- **Firefox** 127.0.2 (64-bit)
+- **Firefox** 131.0.0 (64-bit)
 
 ## Feedback
 Your feedback and suggestions are welcome! Feel free to share any improvements or issues.
