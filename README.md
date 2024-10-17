@@ -13,7 +13,7 @@ Welcome to the **BGG Scripts** repository. This repository contains userscripts 
 
 This single userscript enhances your text editing experience on BoardGameGeek by adding keyboard shortcuts for BBCode formatting, automating link and image insertion, and simplifying image uploads. Key features include:
 
-1. **BBCode Formatting Shortcuts**: Quickly format text with keyboard shortcuts for bold, italic, underline, strikethrough, typewriter, headings, quotes, and hidden text.
+1. **BBCode Formatting Keyboard Shortcuts**: Quickly format text with keyboard shortcuts for bold, italic, underline, strikethrough, typewriter, headings, quotes, and hidden text.
 2. **One-Click Embedding**:
    - **Automated Link Insertion**: Detects URLs pasted into the text field, opens the link dialog, and completes the link insertion for you.
    - **Smart Image Handling**: Detects BoardGameGeek image URLs, opens the image dialog, extracts the image ID, sets the preferred image size, and embeds the image seamlessly.
