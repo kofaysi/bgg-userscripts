@@ -1,7 +1,7 @@
 // ==UserScript==
-// @name         BGG Add Edit Tags Link
+// @name         Add Edit Tags Link @boardgamegeek.com
 // @namespace    https://github.com/kofaysi/bgg-userscripts/blob/main/bgg-add-edit-tags-link.user.js
-// @version      2.1
+// @version      2.2
 // @description  Add an "Edit Tags" link to each div with the class 'tagouter' aligned to the right within the row of the board game name
 // @author       https://github.com/kofaysi/
 // @match        https://boardgamegeek.com/tag/*
