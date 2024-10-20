@@ -1,7 +1,7 @@
 // ==UserScript==
-// @name         BGG Video Resizer
+// @name         Video Resizer @boardgamegeek.com
 // @namespace    https://github.com/kofaysi/bgg-userscripts/blob/main/bgg-video-resizer.user.js
-// @version      1.2
+// @version      1.3
 // @description  Resize BGG videos to not be full width of the column and maintain proper aspect ratio and alignment
 // @match        https://boardgamegeek.com/*
 // @author       https://github.com/kofaysi/
