@@ -1,8 +1,9 @@
 // ==UserScript==
 // @name         BGG BBCode Formatter, Link Inserter, and Image Upload on Drop
 // @namespace    https://github.com/kofaysi/
-// @version      3.2
+// @version      3.3
 // @description  Adds keyboard shortcuts for BBCode formatting, handles link and image pasting, updates aria-labels with shortcuts, and automates image upload on drop in BoardGameGeek.
+// @author       https://github.com/kofaysi/
 // @match        https://boardgamegeek.com/*
 // @grant        none
 // ==/UserScript==
