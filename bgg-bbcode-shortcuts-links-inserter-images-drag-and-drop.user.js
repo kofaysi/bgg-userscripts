@@ -12,6 +12,7 @@
     'use strict';
 
     // Centralized labels with shortcut descriptions
+    // todo: shortcut to items https://boardgamegeek.com/wiki/page/Forum_Formatting#toc13
     const labels = {
         bold: 'Bold (Ctrl+B)',
         italic: 'Italic (Ctrl+I)',
