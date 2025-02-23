@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         BBCode Formatter, Link Inserter, and Image Upload on Drop @boardgamegeek.com
 // @namespace    https://github.com/kofaysi/bgg-userscripts/blob/main/bgg-bbcode-shortcuts-links-inserter-images-drag-and-drop.user.js
-// @version      3.13
+// @version      3.14
 // @description  Adds keyboard shortcuts for BBCode formatting, handles link and image pasting, updates aria-labels with shortcuts, and automates image upload on drop in BoardGameGeek.
 // @author       https://github.com/kofaysi/
 // @match        https://boardgamegeek.com/*
@@ -47,6 +47,14 @@
 
     observer.observe(document.body, { childList: true, subtree: true });
 
+    function triggerInputEvent(element) {
+        ['input', 'change', 'blur'].forEach(eventType => {
+            let event = new Event(eventType, { bubbles: true, cancelable: true });
+            element.dispatchEvent(event);
+        });
+    }
+
+
     function toggleSelection(textarea, before, after) {
         let start = textarea.selectionStart;
         let end = textarea.selectionEnd;
@@ -56,6 +64,8 @@
         textarea.value = text.substring(0, start) + before + selectedText + after + text.substring(end);
         textarea.selectionStart = start + before.length;
         textarea.selectionEnd = end + before.length;
+        triggerInputEvent(textarea);
+
     }
 
     function toggleItemization(textarea) {
@@ -81,6 +91,7 @@
         textarea.value = text.substring(0, start) + newText + text.substring(end);
         textarea.selectionStart = start;
         textarea.selectionEnd = start + newText.length;
+        triggerInputEvent(textarea);
     }
 
     function openLinkDialog() {
@@ -95,10 +106,10 @@
         if (insertImageButton) {
             insertImageButton.click();
             setTimeout(() => {
-            //    let imageButton = document.querySelector(`button[aria-label="${labels.insertImage}"]`);
-            //    if (imageButton) {
-            //        imageButton.click();
-            //    }
+                //    let imageButton = document.querySelector(`button[aria-label="${labels.insertImage}"]`);
+                //    if (imageButton) {
+                //        imageButton.click();
+                //    }
             }, 100);
         }
     }
