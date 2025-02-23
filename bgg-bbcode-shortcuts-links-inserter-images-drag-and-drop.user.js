@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         BBCode Formatter, Link Inserter, and Image Upload on Drop @boardgamegeek.com
 // @namespace    https://github.com/kofaysi/bgg-userscripts/blob/main/bgg-bbcode-shortcuts-links-inserter-images-drag-and-drop.user.js
-// @version      3.6
+// @version      3.7
 // @description  Adds keyboard shortcuts for BBCode formatting, handles link and image pasting, updates aria-labels with shortcuts, and automates image upload on drop in BoardGameGeek.
 // @author       https://github.com/kofaysi/
 // @match        https://boardgamegeek.com/*
@@ -24,8 +24,8 @@
         spoiler: 'Spoiler (Ctrl+Shift+O)',
         addLink: 'Add Link (Ctrl+Shift+K)',
         insertImage: 'Image (Ctrl+Shift+I)',
-        comment: 'Comment (Ctrl+Shift+C)',
-        itemize: 'Itemize (Ctrl+Shift+I)'
+        comment: 'Comment (Ctrl+Shift+N)',
+        itemize: 'Itemize (Ctrl+Shift+Z)'
     };
 
     function updateAriaLabels() {
