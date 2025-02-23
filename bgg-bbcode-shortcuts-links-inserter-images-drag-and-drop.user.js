@@ -23,7 +23,9 @@
         quote: 'Quote (Ctrl+Shift+Q)',
         spoiler: 'Spoiler (Ctrl+Shift+O)',
         addLink: 'Add Link (Ctrl+Shift+K)',
-        insertImage: 'Image (Ctrl+Shift+I)'
+        insertImage: 'Image (Ctrl+Shift+I)',
+        comment: 'Comment (Ctrl+Shift+C)',
+        itemize: 'Itemize (Ctrl+Shift+I)'
     };
 
     function updateAriaLabels() {
@@ -45,23 +47,39 @@
 
     observer.observe(document.body, { childList: true, subtree: true });
 
+
     function toggleSelection(textarea, before, after) {
         let start = textarea.selectionStart;
         let end = textarea.selectionEnd;
         let text = textarea.value;
         let selectedText = text.substring(start, end);
-        let beforeText = text.substring(start - before.length, start);
-        let afterText = text.substring(end, end + after.length);
 
-        if (beforeText === before && afterText === after) {
-            textarea.value = text.substring(0, start - before.length) + selectedText + text.substring(end + after.length);
-            textarea.selectionStart = start - before.length;
-            textarea.selectionEnd = end - before.length;
-        } else {
-            textarea.value = text.substring(0, start) + before + selectedText + after + text.substring(end);
-            textarea.selectionStart = start + before.length;
-            textarea.selectionEnd = end + before.length;
-        }
+        textarea.value = text.substring(0, start) + before + selectedText + after + text.substring(end);
+        textarea.selectionStart = start + before.length;
+        textarea.selectionEnd = end + before.length;
+    }
+    
+    function toggleItemization(textarea) {
+        let start = textarea.selectionStart;
+        let end = textarea.selectionEnd;
+        let text = textarea.value;
+        let selectedText = text.substring(start, end);
+
+        let lines = selectedText.split('\n').map(line => {
+            let trimmed = line.trim();
+            if (trimmed.startsWith('*') || trimmed.startsWith('-')) {
+                return line;
+            } else if (line.startsWith('  ')) {
+                return '  - ' + trimmed;
+            } else {
+                return '* ' + trimmed;
+            }
+        });
+
+        let newText = lines.join('\n');
+        textarea.value = text.substring(0, start) + newText + text.substring(end);
+        textarea.selectionStart = start;
+        textarea.selectionEnd = start + newText.length;
     }
 
     function openLinkDialog() {
@@ -140,6 +158,18 @@
                         if (e.shiftKey) {
                             e.preventDefault();
                             openLinkDialog(); // Trigger the link dialog
+                        }
+                        break;
+                    case 'c':
+                        if (e.shiftKey) {
+                            e.preventDefault();
+                            toggleSelection(textarea, '{{', '}}');
+                        }
+                        break;
+                    case 'i':
+                        if (e.shiftKey) {
+                            e.preventDefault();
+                            toggleItemization(textarea);
                         }
                         break;
                     default:
