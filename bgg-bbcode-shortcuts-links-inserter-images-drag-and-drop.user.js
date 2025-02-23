@@ -57,12 +57,14 @@
         textarea.selectionStart = start + before.length;
         textarea.selectionEnd = end + before.length;
     }
-    
-    function toggleItemization(textarea, before, after) {
+
+    function toggleItemization(textarea) {
         let start = textarea.selectionStart;
         let end = textarea.selectionEnd;
         let text = textarea.value;
-        let selectedText = text.substring(start, end);
+        let selectedText = text.substring(start, end).trim();
+
+        if (!selectedText) return;
 
         let lines = selectedText.split('\n').map(line => {
             let trimmed = line.trim();
@@ -73,9 +75,12 @@
             } else {
                 return '* ' + trimmed;
             }
-        }).join('\n');
-        
-        toggleSelection(textarea, before + lines, after);
+        });
+
+        let newText = '[c]\n' + lines.join('\n') + '\n[/c]';
+        textarea.value = text.substring(0, start) + newText + text.substring(end);
+        textarea.selectionStart = start;
+        textarea.selectionEnd = start + newText.length;
     }
 
     function openLinkDialog() {
@@ -165,7 +170,7 @@
                     case 'z':
                         if (e.shiftKey) {
                             e.preventDefault();
-                            toggleItemization(textarea, '[c]\n', '\n[/c]');
+                            toggleItemization(textarea);
                         }
                         break;
                     default:
