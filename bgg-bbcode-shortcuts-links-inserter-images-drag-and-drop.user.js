@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         BBCode Formatter, Link Inserter, and Image Upload on Drop @boardgamegeek.com
 // @namespace    https://github.com/kofaysi/bgg-userscripts/blob/main/bgg-bbcode-shortcuts-links-inserter-images-drag-and-drop.user.js
-// @version      3.10
+// @version      3.11
 // @description  Adds keyboard shortcuts for BBCode formatting, handles link and image pasting, updates aria-labels with shortcuts, and automates image upload on drop in BoardGameGeek.
 // @author       https://github.com/kofaysi/
 // @match        https://boardgamegeek.com/*
@@ -47,7 +47,7 @@
 
     observer.observe(document.body, { childList: true, subtree: true });
 
-
+(textarea, before, after) {
     function toggleSelection(textarea, before, after) {
         let start = textarea.selectionStart;
         let end = textarea.selectionEnd;
@@ -59,7 +59,7 @@
         textarea.selectionEnd = end + before.length;
     }
     
-    function toggleItemization(textarea) {
+    function toggleItemization(textarea, before, after) {
         let start = textarea.selectionStart;
         let end = textarea.selectionEnd;
         let text = textarea.value;
@@ -74,6 +74,9 @@
             } else {
                 return '* ' + trimmed;
             }
+        }).join('\n');
+        
+        toggleSelection(textarea, before + lines, after);
         });
 
         let newText = lines.join('\n');
@@ -169,7 +172,7 @@
                     case 'z':
                         if (e.shiftKey) {
                             e.preventDefault();
-                            toggleItemization(textarea, '[c]', '[/c]');
+                            toggleItemization(textarea, '[c]\n', '\n[/c]');
                         }
                         break;
                     default:
