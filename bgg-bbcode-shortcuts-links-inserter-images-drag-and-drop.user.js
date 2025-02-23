@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         BBCode Formatter, Link Inserter, and Image Upload on Drop @boardgamegeek.com
 // @namespace    https://github.com/kofaysi/bgg-userscripts/blob/main/bgg-bbcode-shortcuts-links-inserter-images-drag-and-drop.user.js
-// @version      3.11
+// @version      3.12
 // @description  Adds keyboard shortcuts for BBCode formatting, handles link and image pasting, updates aria-labels with shortcuts, and automates image upload on drop in BoardGameGeek.
 // @author       https://github.com/kofaysi/
 // @match        https://boardgamegeek.com/*
@@ -47,7 +47,6 @@
 
     observer.observe(document.body, { childList: true, subtree: true });
 
-(textarea, before, after) {
     function toggleSelection(textarea, before, after) {
         let start = textarea.selectionStart;
         let end = textarea.selectionEnd;
@@ -77,12 +76,6 @@
         }).join('\n');
         
         toggleSelection(textarea, before + lines, after);
-        });
-
-        let newText = lines.join('\n');
-        textarea.value = text.substring(0, start) + newText + text.substring(end);
-        textarea.selectionStart = start;
-        textarea.selectionEnd = start + newText.length;
     }
 
     function openLinkDialog() {
