@@ -64,7 +64,7 @@
     }
 
     window.addEventListener('load', () => {
-        setTimeout(simplifyMarkReadButton, 2000); // Delay execution to ensure elements are fully loaded
+        simplifyMarkReadButton();
         observePage();
     });
 })();
