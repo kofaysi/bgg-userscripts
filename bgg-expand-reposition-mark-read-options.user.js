@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         BGG Expand and Reposition Mark Read Options
 // @namespace    https://github.com/kofaysi/bgg-userscripts/blob/main/bgg-expand-reposition-mark-read-options.user.js
-// @version      2.2
+// @version      2.3
 // @description  Expands the 'Mark All Read' dropdown menu by default and lists its items in a row next to the button.
 // @author       https://github.com/kofaysi/
 // @match        https://boardgamegeek.com/subscriptions*
@@ -31,7 +31,7 @@
         // Try to find dropdown menu within this container
         let dropdownMenu = dropdownContainer.querySelector(".dropdown-menu");
         if (!dropdownMenu) {
-            expandAndRepositionMarkRead(); // Retry after delay
+            setTimeout(expandAndRepositionMarkRead, 500); // Retry after delay
             return;
         }
 
@@ -42,7 +42,12 @@
         dropdownMenu.style.display = "flex";
         dropdownMenu.style.flexDirection = "row";
         dropdownMenu.style.gap = "10px";
-        dropdownMenu.style.marginLeft = "10px";
+        dropdownMenu.style.marginLeft = "0px";
+        dropdownMenu.style.marginRight = "auto";
+
+        // Align the entire dropdown to the left
+        dropdownContainer.style.display = "flex";
+        dropdownContainer.style.justifyContent = "flex-start";
 
         // Move the dropdown menu to be inline with the button
         dropdownContainer.after(dropdownMenu);
@@ -57,7 +62,7 @@
     }
 
     window.addEventListener('load', () => {
-        expandAndRepositionMarkRead(); // Delay execution to ensure elements are fully loaded
+        setTimeout(expandAndRepositionMarkRead, 2000); // Delay execution to ensure elements are fully loaded
         observePage();
     });
 })();
