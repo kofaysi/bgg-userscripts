@@ -31,7 +31,7 @@
         // Try to find dropdown menu within this container
         let dropdownMenu = dropdownContainer.querySelector(".dropdown-menu");
         if (!dropdownMenu) {
-            setTimeout(expandAndRepositionMarkRead, 500); // Retry after delay
+            expandAndRepositionMarkRead();
             return;
         }
 
@@ -62,7 +62,7 @@
     }
 
     window.addEventListener('load', () => {
-        setTimeout(expandAndRepositionMarkRead, 2000); // Delay execution to ensure elements are fully loaded
+        expandAndRepositionMarkRead();
         observePage();
     });
 })();
