@@ -37,7 +37,7 @@
         dropdownMenu.querySelectorAll("button").forEach(button => {
             if (button.textContent.includes("Mark Current Page Read")) {
                 markCurrentPageButton = button;
-            }BGG
+            }
         });
 
         if (!markCurrentPageButton) return;
@@ -64,8 +64,7 @@
     }
 
     window.addEventListener('load', () => {
-        simplifyMarkReadButton();
+        setTimeout(simplifyMarkReadButton, 2000); // Delay execution to ensure elements are fully loaded
         observePage();
     });
 })();
-
