@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         BGG Simplify Mark Read Button
 // @namespace    https://github.com/kofaysi/bgg-userscripts/blob/main/bgg-simplify-mark-read-button.user.js
-// @version      1.0
+// @version      1.1
 // @description  Replaces 'Mark All Read' with a direct 'Mark Current Page Read' button and hides unnecessary elements.
 // @author       https://github.com/kofaysi/
 // @match        https://boardgamegeek.com/subscriptions*
