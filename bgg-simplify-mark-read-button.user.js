@@ -51,6 +51,8 @@
         // Change button color
         newButton.style.setProperty("--bs-btn-bg", "#005bca");
         newButton.style.setProperty("--bs-btn-hover-bg", "#004a9f");
+        newButton.style.setProperty("--bs-btn-border-color", "#005bca");
+        newButton.style.setProperty("--bs-btn-hover-border-color", "#004a9f");
 
         // Replace 'Mark All Read' button with new one
         markAllReadButton.replaceWith(newButton);
