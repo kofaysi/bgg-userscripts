@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         BGG Simplify Mark Read Button
 // @namespace    https://github.com/kofaysi/bgg-userscripts/blob/main/bgg-simplify-mark-read-button.user.js
-// @version      1.4
+// @version      1.5
 // @description  Replaces 'Mark All Read' with a direct 'Mark Current Page Read' button and hides unnecessary elements.
 // @author       https://github.com/kofaysi/
 // @match        https://boardgamegeek.com/subscriptions*
@@ -53,6 +53,8 @@
         newButton.style.setProperty("--bs-btn-hover-bg", "#004a9f");
         newButton.style.setProperty("--bs-btn-border-color", "#005bca");
         newButton.style.setProperty("--bs-btn-hover-border-color", "#004a9f");
+        newButton.style.setProperty("--bs-btn-active-border-color", "#004a9f");
+        newButton.style.setProperty("--bs-btn-active-color", "#004a9f");
 
         // Replace 'Mark All Read' button with new one
         markAllReadButton.replaceWith(newButton);
