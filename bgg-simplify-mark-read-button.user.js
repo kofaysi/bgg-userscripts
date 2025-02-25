@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         BGG Simplify Mark Read Button
 // @namespace    https://github.com/kofaysi/bgg-userscripts/blob/main/bgg-simplify-mark-read-button.user.js
-// @version      1.2
+// @version      1.3
 // @description  Replaces 'Mark All Read' with a direct 'Mark Current Page Read' button and hides unnecessary elements.
 // @author       https://github.com/kofaysi/
 // @match        https://boardgamegeek.com/subscriptions*
@@ -45,7 +45,7 @@
         // Clone 'Mark Current Page Read' and replace the main button
         const newButton = markCurrentPageButton.cloneNode(true);
         newButton.onclick = () => markCurrentPageButton.click();
-        newButton.className = markAllReadButton.className;
+        newButton.className = markAllReadButton.className.replace("dropdown-toggle", ""); // Remove dropdown-toggle class
         newButton.textContent = "Mark Current Page Read";
 
         // Change button color
