@@ -5,6 +5,7 @@
 // @description  Replaces 'Mark All Read' with a direct 'Mark Current Page Read' button and hides unnecessary elements.
 // @author       https://github.com/kofaysi/
 // @match        https://boardgamegeek.com/subscriptions*
+// @license      MIT
 // @grant        none
 // ==/UserScript==
 
