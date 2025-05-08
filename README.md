@@ -6,6 +6,7 @@ Welcome to the **BGG Scripts** repository. This repository contains userscripts 
 1. [BBCode Shortcuts, Link Inserter and Image Upload Assistant](#bbcode-shortcuts-link-inserter-and-image-upload-assistant)
 2. [Video Resizer](#video-resizer)
 3. [Add Edit Tags Link](#add-edit-tags-link)
+4. [BGG Simplify Mark Read Button](#bgg-simplify-mark-read-button)
 
 ## Scripts
 
@@ -33,6 +34,19 @@ This userscript resizes BGG videos to not be the full width of the column and ma
 ### Add Edit Tags Link
   
 This userscript enhances the user experience on the BoardGameGeek website by automatically adding an "Edit Tags" link to each board game entry listed on pages under https://boardgamegeek.com/tag/*. The "Edit Tags" link is seamlessly integrated into the existing layout, aligning to the right within the row of the board game name. This allows users to quickly access the tag editing page for any board game without disrupting the visual style of the site. The script runs automatically upon page load, requiring no additional interaction from the user.
+
+### BGG Simplify Mark Read Button
+
+This userscript streamlines the **Subscriptions** page on [BoardGameGeek Subscription page](https://boardgamegeek.com/subscriptions) by replacing the dropdown-based **"Mark All Read"** button with a more direct and user-friendly **"Mark Current Page Read"** button.
+
+#### Key Features:
+- 🧼 **Clean Interface**: Hides the dropdown menu and its surrounding container.
+- 🖱️ **Direct Access**: Replaces the two-click "Mark All Read" interaction with a one-click button that marks only the current page as read.
+- 🎨 **Improved Visuals**: Applies a consistent blue button style for better visibility and UI harmony.
+- 🔄 **Dynamic Support**: Automatically adapts to dynamically loaded content using a MutationObserver.
+
+#### Why Use It?
+The original "Mark All Read" button presents a risk of clearing everything unintentionally. This script reduces that risk and makes the interface more efficient for daily use.
 
 ## How to Install
 
